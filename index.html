@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our World - Happy Birthday</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Canvas Efek Partikel Hati -->
+  <canvas id="heartCanvas"></canvas>
+
+  <!-- Audio Musik Latar Belakang -->
+  <audio id="bgMusic" loop src="nadhif basalamah - penjaga hati (Official Lyric Video).mp3"></audio>
+
+  <!-- Tombol Musik (Kanan Atas) -->
+  <div class="music-toggle" id="musicToggle" onclick="toggleMusic()">
+    <i class="fas fa-music"></i>
+  </div>
+
+  <div class="container">
+
+    <!-- STEP 1: LOGIN ACCESS -->
+    <section id="step1" class="card active">
+      <div class="lock-icon">
+        <i class="fas fa-heart-lock"></i>
+      </div>
+      <h2>Access Our World</h2>
+      <p class="subtitle">A special place, just for you 💕</p>
+      
+      <form onsubmit="handleLogin(event)">
+        <div class="input-group">
+          <i class="fas fa-user"></i>
+          <input type="text" id="username" value="sayangku" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="password" value="12 September " placeholder="Password (12 September)">
+          <i class="fas fa-eye toggle-pwd" onclick="togglePassword()"></i>
+        </div>
+        <button type="submit" class="btn-primary">Unlock Surprise 💖</button>
+      </form>
+      
+      <p class="footer-note">Made with Love by Marcell 💕</p>
+    </section>
+
+
+    <!-- STEP 2: HAPPY BIRTHDAY LANDING -->
+    <section id="step2" class="card">
+      <h1 class="glow-title">Happy Birthday</h1>
+      <h1 class="name-title"> Sayang ku <i class="fas fa-heart pink-heart"></i></h1>
+      <div class="date-badge">♥ 4 November ♥</div>
+      
+      <p class="message-text">
+       Hari ini sepenuhnya tentang dirimu dan segala kebahagiaan yang kau bawa ke dalam hidupku setiap harinya.
+      </p>
+
+      <button class="btn-primary" onclick="nextStep(3)">Unfold Love 💖</button>
+    </section>
+
+
+    <!-- STEP 3: PRECIOUS MEMORIES -->
+    <section id="step3" class="card">
+      <h2>Our Precious Memories 💕</h2>
+      <p class="subtitle">Moments that mean everything</p>
+
+      <div class="polaroid-grid">
+        <div class="polaroid">
+          <img src="berdua.jpg" alt="Memory 1">
+          <p>Our Smile</p>
+        </div>
+        <div class="polaroid">
+          <img src="lucu.jpeg" alt="Memory 2">
+          <p>Our Favorite Moment</p>
+        </div>
+        <div class="polaroid">
+          <img src="love.jpg" alt="Memory 3">
+          <p>Together Forever</p>
+        </div>
+        <div class="polaroid">
+          <img src="foto.jpg" alt="Memory 4">
+          <p>My Happy Place</p>
+        </div>
+      </div>
+
+      <button class="btn-primary margin-top" onclick="nextStep(4)">Play My Movie 🎬</button>
+    </section>
+
+
+    <!-- STEP 4: SPECIAL VIDEO -->
+    <section id="step4" class="card">
+      <h2>💕 Our Special Video 💕</h2>
+      <div class="video-wrapper">
+        <video id="myVideo" controls poster="aa.jpeg">
+          <source src="kita.mp4" type="video/mp4">
+          Browser kamu tidak mendukung pemutaran video.
+        </video>
+      </div>
+
+      <button class="btn-primary margin-top" onclick="nextStep(5)">Final Surprise 💖</button>
+    </section>
+
+
+    <!-- STEP 5: LETTER FROM KAMALI -->
+    <section id="step5" class="card">
+      <h2>💕 A Letter From Marcell 💕</h2>
+      <p class="subtitle">Written with all my heart</p>
+
+      <div class="letter-box">
+        <div class="envelope-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <p class="letter-greeting">To the most amazing person in my life,</p>
+        <p class="letter-recipient">Sayang,</p>
+        <p class="letter-body">
+          "Kamu tahu enggak? Sejak ada kamu, dunia yang tadinya biasa aja berubah jadi tempat paling indah buat aku. Terima kasih ya, udah hadir dan memeluk hidupku dengan rasa sayang yang luar biasa.<br>
+          Bersamamu, aku belajar kalau bahagia itu sesederhana melihat senyummu.<br><br>
+         Aku bener-bener beruntung dan bersyukur banget punya kamu.<br>
+          Selamat ulang tahun, sayangnya kuuuu ! Semoga semua mimpimu terwujud, dan semoga aku bisa terus ada di sampingmu untuk merayakannya setiap tahun."
+        </p>
+        <p class="letter-closing">Happy Birthday, my love! 💕</p>
+        <p class="letter-signature">Forever yours,<br><strong>Cell</strong></p>
+      </div>
+
+      <button class="btn-primary margin-top" onclick="nextStep(6)">See Cake & Wishes 🎂</button>
+    </section>
+
+
+    <!-- STEP 6: CAKE & FINAL WISH -->
+    <section id="step6" class="card">
+      <h1 class="glow-title">Happy Birthday,</h1>
+      <h1 class="name-title">Sayang  <i class="fas fa-heart pink-heart"></i></h1>
+
+      <!-- Kue Ulang Tahun CSS -->
+      <div class="cake-container" onclick="blowOutCandle()">
+        <div class="candle">
+          <div class="flame" id="flame"></div>
+        </div>
+        <div class="cake-layer layer-top"></div>
+        <div class="cake-layer layer-middle"></div>
+        <div class="cake-layer layer-bottom"></div>
+      </div>
+      <p class="hint-text">(Klik lilin untuk memadamkan atau tiup!)</p>
+
+      <p class="final-wish">
+        Thank you for being my happiness, my love and my everything.<br>
+        Forever yours, <strong>Marcell 💕</strong>
+      </p>
+
+      <!-- Navigasi Bawah -->
+      <div class="bottom-nav">
+        <div class="nav-item" onclick="goToStep(2)"><i class="fas fa-book-open"></i><span>Our Story</span></div>
+        <div class="nav-item" onclick="goToStep(3)"><i class="fas fa-heart"></i><span>Our Love</span></div>
+        <div class="nav-item" onclick="goToStep(5)"><i class="fas fa-infinity"></i><span>Forever Us</span></div>
+        <div class="nav-item" onclick="goToStep(6)"><i class="fas fa-sparkles"></i><span>Always</span></div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

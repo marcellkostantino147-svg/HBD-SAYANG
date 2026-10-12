@@ -1,0 +1,412 @@
+/* RESET & VARIABEL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --primary-pink: #ff2a75;
+  --glow-pink: #ff75a0;
+  --bg-dark: #0d0208;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 105, 180, 0.25);
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* BACKGROUND CANVAS PARTIKEL */
+#heartCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* MUSIC TOGGLE */
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 42, 117, 0.2);
+  border: 1px solid var(--primary-pink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  color: var(--glow-pink);
+  box-shadow: 0 0 15px rgba(255, 42, 117, 0.4);
+  transition: all 0.3s ease;
+}
+
+.music-toggle.playing {
+  animation: spin 4s linear infinite;
+  background: var(--primary-pink);
+  color: #fff;
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
+/* CONTAINER & CARD TRANSITION */
+.container {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  z-index: 10;
+}
+
+.card {
+  display: none;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 42, 117, 0.15);
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.card.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* TYPOGRAPHY & TEXT */
+h1.glow-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.8rem;
+  color: #fff;
+  text-shadow: 0 0 10px var(--primary-pink), 0 0 20px var(--glow-pink);
+}
+
+h1.name-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  color: var(--glow-pink);
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px var(--primary-pink);
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #d1a3be;
+  margin-bottom: 20px;
+}
+
+.pink-heart {
+  color: var(--primary-pink);
+  animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* STEP 1 - LOGIN */
+.lock-icon {
+  font-size: 2.5rem;
+  color: var(--primary-pink);
+  margin-bottom: 15px;
+  filter: drop-shadow(0 0 10px var(--primary-pink));
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.input-group i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a87995;
+}
+
+.input-group .toggle-pwd {
+  left: auto;
+  right: 15px;
+  cursor: pointer;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 105, 180, 0.3);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus {
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 10px rgba(255, 42, 117, 0.4);
+}
+
+.footer-note {
+  font-size: 0.75rem;
+  color: #a87995;
+  margin-top: 20px;
+}
+
+/* BUTTONS */
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #ff2a75, #ff75a0);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 42, 117, 0.5);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 42, 117, 0.7);
+}
+
+.margin-top {
+  margin-top: 20px;
+}
+
+/* STEP 2 - BADGE */
+.date-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(255, 42, 117, 0.15);
+  border: 1px solid var(--primary-pink);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: var(--glow-pink);
+  margin-bottom: 15px;
+}
+
+.message-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e2c0d4;
+  margin-bottom: 25px;
+}
+
+/* STEP 3 - POLAROID GRID */
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.polaroid {
+  background: #fff;
+  padding: 8px 8px 12px 8px;
+  border-radius: 6px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  transform: rotate(-2deg);
+  transition: transform 0.3s;
+}
+
+.polaroid:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.polaroid:hover {
+  transform: scale(1.05) rotate(0deg);
+  z-index: 5;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.polaroid p {
+  color: #333;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1rem;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+/* STEP 4 - VIDEO */
+.video-wrapper {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(255, 42, 117, 0.3);
+}
+
+.video-wrapper video {
+  width: 100%;
+  display: block;
+}
+
+/* STEP 5 - LETTER */
+.letter-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px dashed var(--primary-pink);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+  position: relative;
+}
+
+.envelope-icon {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: var(--primary-pink);
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--primary-pink);
+}
+
+.letter-greeting { font-size: 0.8rem; color: #b892a9; }
+.letter-recipient { font-weight: 600; font-size: 1.1rem; color: var(--glow-pink); margin-bottom: 10px; }
+.letter-body { font-size: 0.88rem; line-height: 1.6; color: #ebd4e2; }
+.letter-closing { margin-top: 15px; font-weight: 600; color: var(--glow-pink); }
+.letter-signature { margin-top: 10px; text-align: right; font-size: 0.85rem; color: #b892a9; }
+
+/* STEP 6 - CAKE & FINAL WISH */
+.cake-container {
+  width: 120px;
+  height: 120px;
+  margin: 25px auto;
+  position: relative;
+  cursor: pointer;
+}
+
+.cake-layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(to right, #e83e8c, #ff65a3);
+  border-radius: 10px 10px 0 0;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.4);
+}
+
+.layer-bottom { width: 120px; height: 35px; bottom: 0; }
+.layer-middle { width: 90px; height: 30px; bottom: 35px; background: linear-gradient(to right, #ff65a3, #ff8da1); }
+.layer-top { width: 60px; height: 25px; bottom: 65px; background: linear-gradient(to right, #ff8da1, #ffb3c6); }
+
+.candle {
+  width: 8px;
+  height: 20px;
+  background: #fff;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.flame {
+  width: 12px;
+  height: 16px;
+  background: orange;
+  border-radius: 50% 50% 20% 20%;
+  position: absolute;
+  top: -16px;
+  left: -2px;
+  box-shadow: 0 0 10px orange, 0 0 20px yellow;
+  animation: flicker 0.6s infinite alternate;
+}
+
+.flame.off {
+  display: none;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.hint-text {
+  font-size: 0.75rem;
+  color: #a87995;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.final-wish {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #d1a3be;
+  margin-bottom: 20px;
+}
+
+/* BOTTOM NAVIGATION */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1px solid rgba(255, 105, 180, 0.2);
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  color: #a87995;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-item i {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.nav-item:hover {
+  color: var(--glow-pink);
+  transform: translateY(-2px);
+}
